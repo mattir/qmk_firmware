@@ -16,7 +16,7 @@
 #include QMK_KEYBOARD_H
 
 enum layers {
-  QWERTY = 0,
+  QWERTY,
   LOWER,
   RAISE,
   FUNCS,
@@ -28,19 +28,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_TAB, KC_Q, KC_W, KC_E, KC_R, KC_T, KC_Y, KC_U, KC_I, KC_O, KC_P, KC_BSLS,
       KC_ESC, LALT_T(KC_A), LCTL_T(KC_S), LGUI_T(KC_D), LSFT_T(KC_F), KC_G, KC_H, RSFT_T(KC_J), RGUI_T(KC_K), RCTL_T(KC_L), RALT_T(KC_SCLN), KC_ENT,
       KC_LEAD, KC_Z, KC_X, KC_C, KC_V, KC_B, KC_GRV, XXXXXXX, XXXXXXX, KC_MINS, KC_N, KC_M, KC_COMM, KC_DOT, KC_SLSH, KC_QUOT,
-      KC_MUTE, KC_LCTL, KC_LGUI, TT(RAISE), KC_SPC, KC_SPC, TT(LOWER), KC_BSPC, KC_LALT, TG(RGBLED)
+      KC_MUTE, KC_HASH, KC_MINS, LT(LOWER, KC_BSPC), LT(RAISE, KC_SPC), LT(RAISE, KC_ENT), LT(LOWER, KC_SPC), KC_QUOT, KC_AT, TG(RGBLED)
       ),
   [LOWER] = LAYOUT(
       _______, KC_EXLM, KC_AT, KC_HASH, KC_LCBR, KC_RCBR, KC_1, KC_2, KC_3, KC_4, KC_5,  _______,
       _______, KC_DLR, KC_PERC, KC_CIRC, KC_LPRN, KC_RPRN, KC_6, KC_7, KC_8, KC_9, KC_0,  _______,
       _______, KC_AMPR, KC_COMM, KC_DOT, KC_LBRC, KC_RBRC, _______, XXXXXXX, XXXXXXX, _______, KC_EQL, KC_PLUS, KC_MINS, KC_ASTR, KC_SLSH,  _______,
-      _______, _______, _______, _______, _______, _______, _______, KC_DEL, _______, _______
+      _______, _______, _______, KC_DEL, _______, _______, _______, _______, _______, _______
       ),
   [RAISE] = LAYOUT(
       _______, KC_P1, KC_P2, KC_P3, KC_P4, KC_P5, XXXXXXX, KC_HOME, KC_UP, KC_END, XXXXXXX,  _______,
       _______, LALT_T(KC_P6), LCTL_T(KC_P7), LGUI_T(KC_P8), LSFT_T(KC_P9), KC_P0, KC_PGUP, KC_LEFT, KC_DOWN, KC_RGHT, XXXXXXX,  _______,
       _______, KC_PSLS, KC_PAST, KC_PMNS, KC_PPLS, KC_PEQL,  _______, XXXXXXX, XXXXXXX, _______, KC_PGDN, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  _______,
-      _______, KC_PDOT, KC_PENT,  _______, _______, _______, _______, KC_DEL, _______, _______
+      _______, KC_PDOT, KC_PENT, KC_DEL, _______, _______, _______, _______, _______, _______
       ),
   [FUNCS] = LAYOUT(
       _______, KC_F1, KC_F2, KC_F3, KC_F4, KC_F5, XXXXXXX, XXXXXXX, KC_VOLU, XXXXXXX, KC_POWER,  _______,
