@@ -16,59 +16,63 @@
 #include QMK_KEYBOARD_H
 
 enum layers {
-  QWERTY = 0,
-  LOWER,
-  RAISE,
+  QWERTY,
+  NUMS,
+  SYMS,
+  NAV,
   FUNCS,
-  RGBLED
+  MOUSE,
+  MEDIA
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [QWERTY] = LAYOUT(
-      KC_TAB, KC_Q, KC_W, KC_E, KC_R, KC_T, KC_Y, KC_U, KC_I, KC_O, KC_P, KC_BSLS,
-      KC_ESC, KC_A, KC_S, KC_D, KC_F, KC_G, KC_H, KC_J, KC_K, KC_L, KC_SCLN, KC_ENT,
-      KC_LEAD, KC_Z, KC_X, KC_C, KC_V, KC_B, KC_GRV, XXXXXXX, XXXXXXX, KC_MINS, KC_N, KC_M, KC_COMM, KC_DOT, KC_SLSH, KC_QUOT,
-      KC_MUTE, KC_LCTL, KC_LGUI, TT(RAISE), SFT_T(KC_SPC), SFT_T(KC_SPC), TT(LOWER), KC_BSPC, KC_LALT, TG(RGBLED)
+      KC_NO, KC_Q, KC_W, KC_E, KC_R, KC_T, KC_Y, KC_U, KC_I, KC_O, KC_P, KC_NO,
+      KC_NO, LALT_T(KC_A), LCTL_T(KC_S), LGUI_T(KC_D), LSFT_T(KC_F), KC_G, KC_H, LSFT_T(KC_J), LGUI_T(KC_K), LCTL_T(KC_L), LALT_T(KC_SCLN), KC_NO,
+      KC_NO, KC_Z, KC_X, KC_C, KC_V, KC_B, KC_NO, KC_NO, KC_NO, KC_NO, KC_N, KC_M, KC_COMM, KC_DOT, KC_SLSH, KC_NO,
+      KC_NO, KC_LEAD, LT(NAV, KC_DEL), LT(NUMS, KC_BSPC), LT(SYMS, KC_TAB), LT(MEDIA, KC_ENT), LT(MOUSE, KC_SPC), LT(FUNCS, KC_ESC), KC_LEAD, KC_NO
       ),
-  [LOWER] = LAYOUT(
-      _______, KC_EXLM, KC_AT, KC_HASH, KC_LCBR, KC_RCBR, _______, _______, _______, _______, _______, _______,
-      _______, KC_DLR, KC_PERC, KC_CIRC, KC_LPRN, KC_RPRN, KC_EQL, KC_PLUS, KC_MINS, KC_ASTR, KC_SLSH, _______,
-      TG(FUNCS), KC_AMPR, _______, _______, KC_LBRC, KC_RBRC, _______, XXXXXXX, XXXXXXX, _______, _______, _______, KC_COMM, KC_DOT, _______, _______,
-      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
+  [NUMS] = LAYOUT(
+      KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_LBRC, KC_7, KC_8, KC_9, KC_RBRC, KC_NO,
+      KC_NO, KC_LALT, KC_LCTL, KC_LGUI, KC_LSFT, KC_NO, KC_EQL, KC_4, KC_5, KC_6, KC_COMM, KC_NO,
+      KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_GRV, KC_1, KC_2, KC_3, KC_BSLS, KC_NO,
+      KC_NO, KC_NO, KC_NO, _______, KC_NO, KC_MINS, KC_0, KC_DOT, KC_NO, KC_NO
       ),
-  [RAISE] = LAYOUT(
-      _______, KC_1, KC_2, KC_3, KC_4, KC_5, KC_6, KC_7, KC_8, KC_9, KC_0, _______,
-      _______, _______, KC_MPRV, KC_MPLY, KC_MNXT, _______, KC_LEFT, KC_DOWN, KC_UP, KC_RGHT, _______, _______,
-      _______, _______, KC_BTN1, KC_BTN3, KC_BTN2, _______, _______, XXXXXXX, XXXXXXX, _______, KC_MS_L, KC_MS_D, KC_MS_U, KC_MS_R, _______, _______,
-      _______, _______, _______, _______, _______, _______, _______, KC_DEL, _______, _______
+  [SYMS] = LAYOUT(
+      KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_LCBR, KC_AMPR, KC_ASTR, KC_DQUO, KC_RCBR, KC_NO,
+      KC_NO, KC_LALT, KC_LCTL, KC_LGUI, KC_LSFT, KC_NO, KC_PLUS, KC_DLR, KC_PERC, KC_CIRC, KC_QUOT, KC_NO,
+      KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_TILD, KC_EXLM, KC_AT, KC_HASH, KC_PIPE, KC_NO,
+      KC_NO, KC_NO, KC_NO, KC_NO, _______, KC_UNDS, KC_LPRN, KC_RPRN, KC_NO, KC_NO
+      ),
+  [NAV] = LAYOUT(
+      KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, SGUI(KC_Z), LGUI(KC_V), LGUI(KC_C), LGUI(KC_X), LGUI(KC_Z), KC_NO,
+      KC_NO, KC_LALT, KC_LCTL, KC_LGUI, KC_LSFT, KC_NO, KC_CAPS, KC_LEFT, KC_DOWN, KC_UP, KC_RIGHT, KC_NO,
+      KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_INS, KC_HOME, KC_PGDN, KC_PGUP, KC_END, KC_NO,
+      KC_NO, KC_NO, _______, KC_NO, KC_NO, KC_TAB, KC_BSPC, KC_DEL, KC_NO, KC_NO
       ),
   [FUNCS] = LAYOUT(
-      _______, KC_F1, KC_F2, KC_F3, KC_F4, KC_F5, KC_PPLS, KC_P7, KC_P8, KC_P9, KC_PAST, _______,
-      _______, KC_F6, KC_F7, KC_F8, KC_F9, KC_F10, KC_PMNS, KC_P4, KC_P5, KC_P6, KC_PSLS, _______,
-      TG(FUNCS), KC_F11, KC_F12, _______, _______, _______, _______, XXXXXXX, XXXXXXX, _______, KC_P0, KC_P1, KC_P2, KC_P3, KC_PDOT, KC_PEQL,
-      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
+      KC_NO, KC_F12, KC_F7, KC_F8, KC_F9, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
+      KC_NO, KC_F11, KC_F4, KC_F5, KC_F6, KC_NO, KC_NO, KC_LSFT, KC_LGUI, KC_LCTL, KC_LALT, KC_NO,
+      KC_NO, KC_F10, KC_F1, KC_F2, KC_F3, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
+      KC_NO, KC_NO, KC_NO, KC_SPC, KC_ENT, KC_NO, KC_NO, _______, KC_NO, KC_NO
       ),
-  [RGBLED] = LAYOUT(
-      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-      _______, _______, RGB_VAI, RGB_HUI, RGB_SAI, RGB_MOD, _______, _______, _______, _______, _______, _______,
-      _______, _______, RGB_VAD, RGB_HUD, RGB_SAD, RGB_RMOD, _______, XXXXXXX, XXXXXXX, _______, _______, _______, _______, _______, _______, _______,
-      RGB_TOG, _______, _______, _______, _______, _______, _______, _______, _______, TG(RGBLED)
+  [MOUSE] = LAYOUT(
+      KC_NO, KC_NO, KC_NO, KC_WBAK, KC_WFWD, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
+      KC_NO, KC_MS_L, KC_MS_U, KC_MS_D, KC_MS_R, KC_NO, KC_NO, KC_LSFT, KC_LGUI, KC_LCTL, KC_LALT, KC_NO,
+      KC_NO, KC_WH_L, KC_WH_U, KC_WH_D, KC_WH_R, KC_NO, KC_NO, KC_ACL0, KC_ACL1, KC_ACL2, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
+      KC_NO, KC_NO, KC_BTN1, KC_BTN3, KC_BTN2, KC_NO, _______, KC_NO, KC_NO, KC_NO
       ),
+  [MEDIA] = LAYOUT(
+      KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
+      KC_NO, KC_MPRV, KC_VOLU, KC_VOLD, KC_MNXT, KC_NO, KC_NO, KC_LSFT, KC_LGUI, KC_LCTL, KC_LALT, KC_NO,
+      KC_NO, KC_NO, KC_BRIU, KC_BRID, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
+      KC_NO, KC_NO, KC_MUTE, KC_MPLY, KC_MSTP, _______, KC_NO, KC_NO, KC_NO, KC_NO
+      )
 };
-
-bool is_cmd_tab_active = false;
-uint16_t cmd_tab_timer = 0;
 
 LEADER_EXTERNS();
 
 void matrix_scan_user(void) {
-  if (is_cmd_tab_active) {
-    if (timer_elapsed(cmd_tab_timer) > 1000) {
-      unregister_code(KC_LGUI);
-      is_cmd_tab_active = false;
-    }
-  }
-
   LEADER_DICTIONARY() {
     leading = false;
     leader_end();
@@ -174,19 +178,25 @@ static void render_status(void) {
   oled_write_P(PSTR("Layer: "), false);
   switch (get_highest_layer(layer_state)) {
     case QWERTY:
-      oled_write_P(PSTR("Default\n"), false);
+      oled_write_P(PSTR("QWERTY\n"), false);
       break;
-    case LOWER:
-      oled_write_P(PSTR("Lower\n"), false);
+    case NUMS:
+      oled_write_P(PSTR("NUMBERS\n"), false);
       break;
-    case RAISE:
-      oled_write_P(PSTR("Raise\n"), false);
+    case SYMS:
+      oled_write_P(PSTR("SYMBOLS\n"), false);
+      break;
+    case NAV:
+      oled_write_P(PSTR("NAVIGATION\n"), false);
       break;
     case FUNCS:
-      oled_write_P(PSTR("F-keys\n"), false);
+      oled_write_P(PSTR("FUNCTIONS\n"), false);
       break;
-    case RGBLED:
-      oled_write_P(PSTR("Underglow\n"), false);
+    case MOUSE:
+      oled_write_P(PSTR("MOUSE\n"), false);
+      break;
+    case MEDIA:
+      oled_write_P(PSTR("MEDIA\n"), false);
       break;
     default:
       oled_write_P(PSTR("No idea dog\n"), false);
@@ -198,94 +208,6 @@ void oled_task_user(void) {
     render_status(); // Renders the current keyboard layer
   } else {
     render_mattir_logo();
-  }
-}
-#endif
-
-// Layer-specific encoder knob functions
-#ifdef ENCODER_ENABLE
-void encoder_update_user(uint8_t index, bool clockwise) {
-  if (index == 0) { // left knob
-    switch (get_highest_layer(layer_state)) {
-      case QWERTY: // Volume
-        if (clockwise) {
-          tap_code(KC_VOLD);
-        } else {
-          tap_code(KC_VOLU);
-        }
-        break;
-      case LOWER: // Desktop switching
-        if (clockwise) {
-          tap_code16(C(KC_RIGHT));
-        } else {
-          tap_code16(C(KC_LEFT));
-        }
-        break;
-      case RAISE: // Mousewheel L/R
-        if (clockwise) {
-          tap_code(KC_WH_L);
-        } else {
-          tap_code(KC_WH_R);
-        }
-        break;
-      case RGBLED: // Underglow color
-        if (clockwise) {
-          rgblight_increase_hue();
-        } else {
-          rgblight_decrease_hue();
-        }
-        break;
-      default: // No action
-        if (clockwise) {
-          tap_code(KC_NO);
-        } else {
-          tap_code(KC_NO);
-        }
-        break;
-    }
-  } else if (index == 1) { // right knob
-    switch (get_highest_layer(layer_state)) {
-      case QWERTY: // Undo / Redo
-        if (clockwise) {
-          tap_code16(LGUI(KC_Z));
-        } else {
-          tap_code16(SGUI(KC_Z));
-        }
-        break;
-      case LOWER: // App switching
-        if (clockwise) {
-          if (!is_cmd_tab_active) {
-            is_cmd_tab_active = true;
-            register_code(KC_LGUI);
-          }
-          cmd_tab_timer = timer_read();
-          tap_code16(KC_TAB);
-        } else {
-          tap_code16(S(KC_TAB));
-        }
-        break;
-      case RAISE: // Mouse wheel U/D
-        if (clockwise) {
-          tap_code(KC_WH_U);
-        } else {
-          tap_code(KC_WH_D);
-        }
-        break;
-      case RGBLED: // Underglow brightness
-        if (clockwise) {
-          rgblight_increase_val();
-        } else {
-          rgblight_decrease_val();
-        }
-        break;
-      default: // No action
-        if (clockwise) {
-          tap_code(KC_NO);
-        } else {
-          tap_code(KC_NO);
-        }
-        break;
-    }
   }
 }
 #endif

@@ -22,34 +22,23 @@
 #    define OLED_UPDATE_INTERVAL 30
 #endif
 
-#ifdef RGBLIGHT_ENABLE
-#    define RGBLIGHT_LIMIT_VAL 150
-#    define RGBLIGHT_ANIMATIONS
-#    define RGBLIGHT_HUE_STEP 8
-#    define RGBLIGHT_SAT_STEP 8
-#    define RGBLIGHT_VAL_STEP 8
-#    define RGBLIGHT_SLEEP
-#endif
-
 // If you are using an Elite C rev3 on the slave side, uncomment the lines below:
 //#define SPLIT_USB_DETECT
 //#define NO_USB_STARTUP_CHECK
 
 // Set the layer toggle to only need 2 clicks instead of 5
-#define TAPPING_TOGGLE 2
+//#define TAPPING_TOGGLE 2
 
 // EC11K encoders have a different resolution than other EC11 encoders.
-#define ENCODER_RESOLUTION 2
+//#define ENCODER_RESOLUTION 2
 
 // The Leader key allows to flexibly assign macros to key sequences.
 #define LEADER_PER_KEY_TIMING
 #define LEADER_TIMEOUT 350
-
-#define TAPPING_TERM 200
 
 // Allows to use either side as the master. Look at the documentation for info:
 // https://docs.qmk.fm/#/config_options?id=setting-handedness
 #define EE_HANDS
 
 // Allows media codes to properly register in macros and rotary encoder code
-#define TAP_CODE_DELAY 10
+//#define TAP_CODE_DELAY 10
